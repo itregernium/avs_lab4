@@ -1,0 +1,14 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY ./app ./app
+COPY manage.py .
+
+CMD ["gunicorn", "--bind", "0.0.0.0:5555", "manage:app"]
+
+# ps - это всего лишь пример. с этим файлом у вас ничего не заработает )
